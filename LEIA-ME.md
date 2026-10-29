@@ -1,37 +1,37 @@
-# Hospedar a Comodoro na Vercel
+# Hospedar a Comodoro na Hostinger
 
-O ZIP contém o site completo: HTML, CSS, JavaScript, imagens, duas versões do vídeo, fontes e GSAP/ScrollTrigger. O efeito de desfoque e destaque de frases é uma implementação própria, sem dependência do React Bits Pro ou chave de licença.
+Este site é estático. Não exige instalação de dependências, compilação, Node.js no servidor, banco de dados ou variáveis de ambiente.
 
-## Pelo navegador
+## Estrutura de publicação
 
-1. Entre na sua conta Vercel e abra https://vercel.com/drop.
-2. Arraste `Comodoro-Vercel.zip` para a página.
-3. Escolha sua equipe, dê um nome ao projeto e clique em Deploy.
-4. Abra o endereço gerado e confira a página. O arquivo `index.html` está na raiz do pacote.
+Mantenha `index.html`, `styles.css`, `app.js` e a pasta completa `assets/` diretamente na pasta pública do domínio (normalmente `public_html`). Não coloque uma pasta intermediária chamada `otica-Comodoro` dentro dela.
 
-Não é necessário instalar dependências, configurar variáveis de ambiente ou compilar. Se a Vercel pedir o framework, selecione **Other**. Deixe o comando de build vazio e use **.** como pasta de saída. O `vercel.json` já define esses valores.
+Preserve todos os nomes e subpastas de `assets/`, incluindo `fonts/` e `vendor/`. As fontes e as bibliotecas GSAP e ScrollTrigger já estão incluídas. As duas versões do vídeo atendem desktop e celular; `hero-original.webp` é usada na prévia de compartilhamento.
 
-## Alternativa pelo terminal
+## Publicar pela branch main
 
-Extraia o ZIP, abra um terminal dentro da pasta que contém `index.html` e execute:
+Na hospedagem de sites da Hostinger que oferece implantação Git no hPanel:
 
-```sh
-npx vercel --prod
-```
+1. Faça um backup do conteúdo atual da pasta pública antes de substituir arquivos.
+2. Configure o repositório `RodNegocios/otica-Comodoro` e selecione a branch `main`.
+3. Configure o destino como a pasta pública do domínio. Se a ferramenta exigir uma pasta vazia, preserve o backup antes de prepará-la.
+4. Implante os arquivos diretamente dessa branch. Não há comando de instalação ou build, nem pasta `dist` ou `build`.
+5. Para atualizações automáticas, configure a implantação automática conforme as opções do seu plano. Um push para `main` só atualiza a hospedagem quando essa integração está configurada.
 
-Siga o login e a seleção do projeto na sua própria conta.
+Se o repositório for privado, configure a autorização Git pelos meios oferecidos pela Hostinger. Não coloque tokens ou chaves no repositório.
 
-## Editar e atualizar
+Se seu plano não oferecer implantação Git, envie `index.html`, `styles.css`, `app.js` e a pasta completa `assets/` pelo Gerenciador de Arquivos ou SFTP, usando os arquivos da branch `main`. Este guia não é necessário na pasta pública; não envie a pasta `.git`.
 
-- `index.html`: textos, contatos e ícones SVG.
-- `styles.css`: layout, cores e responsividade.
-- `app.js`: animações, scroll, vídeo e interações.
-- `assets/`: arquivos necessários para o site; mantenha a estrutura de pastas.
+## Conferir depois da publicação
 
-Para republicar, envie a pasta atualizada ao projeto no painel Vercel ou use novamente o comando acima. Se preferir integração contínua, coloque os arquivos em um repositório Git e importe-o na Vercel.
+- Abra o domínio com HTTPS e confira imagens, fontes e vídeo no computador e no celular.
+- Teste filtros de óculos, janelas de inspiração e fotos, menu móvel e botão de reduzir movimento.
+- Confira os links de WhatsApp, Instagram e mapa.
+- Se aparecer uma página padrão da hospedagem, verifique qual arquivo de índice está sendo servido antes de remover a página padrão; preserve arquivos de outros sistemas existentes.
+- Após atualizar, limpe o cache da hospedagem/CDN, se estiver habilitado, e recarregue o navegador.
 
-Depois de escolher o domínio definitivo, configure `og:url` e use a URL absoluta desse domínio em `og:image`, no `index.html`, para a prévia de compartilhamento. O pacote usa uma imagem local e não depende do endereço privado do Sites.
+## Desenvolvimento local
 
-O arquivo foi preparado e verificado localmente; a publicação na sua conta Vercel é feita por você. Nenhuma credencial está incluída.
+Na raiz do repositório, execute `python3 -m http.server 8000` e abra o site pelo servidor local. Não é necessário instalar pacotes. Para verificar a sintaxe do JavaScript, use `node --check app.js` se Node.js estiver disponível.
 
-Documentação oficial: https://vercel.com/docs/drop e https://vercel.com/docs/cli/deploy.
+Os arquivos do site mantêm os mesmos caminhos e conteúdo da versão anterior. A configuração exclusiva da Vercel foi removida. Nenhuma regra de redirecionamento é necessária para esta página única com navegação por âncoras.
